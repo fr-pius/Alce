@@ -258,53 +258,54 @@
 
     async function consultarChegadas() {
 
-      const mes = document.getElementById("mes").value;
+  const mes =
+    document.getElementById("mes").value;
 
-      const mensagem = document.getElementById("mensagem");
-      const resultado = document.getElementById("resultado");
+  const mensagem =
+    document.getElementById("mensagem");
 
-      mensagem.className = "";
-      mensagem.textContent = "Consultando o Nexus...";
-      resultado.innerHTML = "";
+  const resultado =
+    document.getElementById("resultado");
 
-      try {
 
-        const url =
-          URL_NEXUS +
-          "?acao=chegadas&mes=" +
-          encodeURIComponent(mes);
+  mensagem.className = "";
+  mensagem.textContent =
+    "Consultando o Nexus...";
 
-        const resposta = await fetch(url);
+  resultado.innerHTML = "";
 
-        if (!resposta.ok) {
-          throw new Error(
-            "O Nexus respondeu com erro HTTP " +
-            resposta.status
-          );
+
+  try {
+
+    const dados =
+      await consultarNexus(
+        "chegadas",
+        {
+          mes: mes
         }
+      );
 
-        const dados = await resposta.json();
-
-        if (dados.erro) {
-          throw new Error(dados.erro);
-        }
-
-        mostrarListaChegadas(dados);
-
-        mensagem.textContent =
-          "Consulta realizada com sucesso.";
-
-      } catch (erro) {
-
-        mensagem.className = "erro";
-
-        mensagem.textContent =
-          "Não foi possível consultar o Nexus: " +
-          erro.message;
-
-      }
-
+    if (dados.erro) {
+      throw new Error(dados.erro);
     }
+
+    mostrarListaChegadas(dados);
+
+    mensagem.textContent =
+      "Consulta realizada com sucesso.";
+
+
+  } catch (erro) {
+
+    mensagem.className = "erro";
+
+    mensagem.textContent =
+      "Não foi possível consultar o Nexus: " +
+      erro.message;
+
+  }
+
+}
 
 
     // ============================================================
