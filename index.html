@@ -249,7 +249,7 @@
 
     const URL_NEXUS =
       
-"https://script.google.com/a/macros/mosteirodasantacruz.org.br/s/AKfycbx34HiwD-S36titlXfySCPOhi6DBGEgqbw4bUAuxVRXQvkEYiD7gXyL-I3d-mFd5xnx/exec";
+"https://script.google.com/a/macros/mosteirodasantacruz.org.br/s/AKfycbyeFKDZrFL4GpvaUnx0sH8yXN1gDAiQU5mr9xu4LdH15lSA5gAanS3wmYjL0ORf0QXk/exec";
 
 
     // ============================================================
@@ -306,7 +306,103 @@
   }
 
 }
+// ============================================================
+// COMUNICAÇÃO COM O NEXUS
+// ============================================================
 
+function consultarNexus(acao, parametros) {
+
+  return new Promise(function(resolve, reject) {
+
+    const nomeCallback =
+      "alceCallback_" +
+      Date.now() +
+      "_" +
+      Math.floor(Math.random() * 100000);
+
+
+    const script =
+      document.createElement("script");
+
+
+    const params =
+      new URLSearchParams();
+
+
+    params.set("acao", acao);
+    params.set("callback", nomeCallback);
+
+
+    Object.keys(parametros || {}).forEach(function(chave) {
+
+      params.set(
+        chave,
+        parametros[chave]
+      );
+
+    });
+
+
+    const url =
+      URL_NEXUS +
+      "?" +
+      params.toString();
+
+
+    let concluido = false;
+
+
+    window[nomeCallback] =
+      function(dados) {
+
+        concluido = true;
+
+        limpar();
+
+        resolve(dados);
+
+      };
+
+
+    script.onerror =
+      function() {
+
+        if (concluido) {
+          return;
+        }
+
+        concluido = true;
+
+        limpar();
+
+        reject(
+          new Error(
+            "O Nexus não pôde ser consultado."
+          )
+        );
+
+      };
+
+
+    script.src = url;
+
+
+    document.body.appendChild(script);
+
+
+    function limpar() {
+
+      delete window[nomeCallback];
+
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+
+    }
+
+  });
+
+}
 
     // ============================================================
     // APRESENTAÇÃO DOS RESULTADOS
