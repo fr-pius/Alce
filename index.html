@@ -1,62 +1,441 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ALCE — Nexus</title>
+  <title>ALCE — Nexus</title>
 
-    <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #f4f1e8;
+      color: #2c2a26;
+    }
+
+    .pagina {
+      width: min(900px, 92%);
+      margin: 0 auto;
+      padding: 50px 0;
+    }
+
+    .cabecalho {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .cabecalho h1 {
+      margin: 0;
+      font-size: 42px;
+      font-weight: normal;
+      letter-spacing: 2px;
+    }
+
+    .cabecalho .subtitulo {
+      margin-top: 8px;
+      font-size: 17px;
+      color: #6d675e;
+    }
+
+    .ornamento {
+      margin: 14px 0;
+      font-size: 24px;
+      color: #756d61;
+    }
+
+    .painel {
+      background: #fffdf8;
+      border: 1px solid #d8d1c3;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .painel h2 {
+      margin-top: 0;
+      font-size: 25px;
+      font-weight: normal;
+    }
+
+    .controle {
+      display: flex;
+      gap: 12px;
+      align-items: end;
+      flex-wrap: wrap;
+    }
+
+    .campo {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .campo label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 15px;
+    }
+
+    select,
+    button {
+      width: 100%;
+      padding: 11px 13px;
+      font: inherit;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    select {
+      border: 1px solid #c8c0b2;
+      background: white;
+    }
+
+    button {
+      border: 1px solid #514b43;
+      background: #514b43;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #3e3933;
+    }
+
+    .botao {
+      width: 150px;
+    }
+
+    #mensagem {
+      margin-top: 20px;
+      color: #6d675e;
+    }
+
+    #resultado {
+      margin-top: 30px;
+    }
+
+    .titulo-lista {
+      font-size: 23px;
+      margin-bottom: 15px;
+    }
+
+    .registro {
+      border-top: 1px solid #ddd6ca;
+      padding: 17px 0;
+    }
+
+    .registro:first-child {
+      border-top: none;
+    }
+
+    .nome {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .detalhes {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #625d55;
+    }
+
+    .vazio {
+      padding: 20px 0;
+      color: #6d675e;
+      font-style: italic;
+    }
+
+    .erro {
+      color: #8a3028;
+    }
+
+    .rodape {
+      text-align: center;
+      margin-top: 35px;
+      font-size: 13px;
+      color: #817a70;
+    }
+
+    @media (max-width: 600px) {
+      .pagina {
+        padding: 30px 0;
+      }
+
+      .cabecalho h1 {
+        font-size: 34px;
+      }
+
+      .painel {
+        padding: 22px;
+      }
+
+      .botao {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <main class="alce">
+  <main class="pagina">
 
-        <header class="cabecalho">
-            <div class="ornamento">❦</div>
-            <h1>ALCE</h1>
-            <p>Nexus</p>
-        </header>
+    <header class="cabecalho">
+      <h1>ALCE</h1>
 
-        <section class="painel">
+      <div class="ornamento">❦</div>
 
-            <h2>Chegadas</h2>
+      <div class="subtitulo">
+        Assistente do Nexus
+      </div>
+    </header>
 
-            <p>
-                Selecione o mês:
-            </p>
+    <section class="painel">
 
-            <select id="mes">
-                <option value="">Selecione...</option>
-                <option value="1">Janeiro</option>
-                <option value="2">Fevereiro</option>
-                <option value="3">Março</option>
-                <option value="4">Abril</option>
-                <option value="5">Maio</option>
-                <option value="6">Junho</option>
-                <option value="7">Julho</option>
-                <option value="8">Agosto</option>
-                <option value="9">Setembro</option>
-                <option value="10">Outubro</option>
-                <option value="11">Novembro</option>
-                <option value="12">Dezembro</option>
-            </select>
+      <h2>Lista de chegadas</h2>
 
-            <button id="consultar">
-                Consultar chegadas
-            </button>
+      <div class="controle">
 
-        </section>
+        <div class="campo">
+          <label for="mes">Mês</label>
 
-        <section id="resultado"></section>
+          <select id="mes">
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9" selected>Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+          </select>
+        </div>
 
-    </main>
+        <div class="botao">
+          <button onclick="consultarChegadas()">
+            Consultar
+          </button>
+        </div>
 
-    <script src="script.js"></script>
+      </div>
+
+      <div id="mensagem"></div>
+
+      <div id="resultado"></div>
+
+    </section>
+
+    <footer class="rodape">
+      ALCE · Nexus
+    </footer>
+
+  </main>
+
+
+  <script>
+
+    // ============================================================
+    // CONFIGURAÇÃO
+    // ============================================================
+
+    const URL_NEXUS =
+      "COLE_AQUI_A_URL_DO_SEU_WEB_APP";
+
+
+    // ============================================================
+    // CONSULTA
+    // ============================================================
+
+    async function consultarChegadas() {
+
+      const mes = document.getElementById("mes").value;
+
+      const mensagem = document.getElementById("mensagem");
+      const resultado = document.getElementById("resultado");
+
+      mensagem.className = "";
+      mensagem.textContent = "Consultando o Nexus...";
+      resultado.innerHTML = "";
+
+      try {
+
+        const url =
+          URL_NEXUS +
+          "?acao=chegadas&mes=" +
+          encodeURIComponent(mes);
+
+        const resposta = await fetch(url);
+
+        if (!resposta.ok) {
+          throw new Error(
+            "O Nexus respondeu com erro HTTP " +
+            resposta.status
+          );
+        }
+
+        const dados = await resposta.json();
+
+        if (dados.erro) {
+          throw new Error(dados.erro);
+        }
+
+        mostrarListaChegadas(dados);
+
+        mensagem.textContent =
+          "Consulta realizada com sucesso.";
+
+      } catch (erro) {
+
+        mensagem.className = "erro";
+
+        mensagem.textContent =
+          "Não foi possível consultar o Nexus: " +
+          erro.message;
+
+      }
+
+    }
+
+
+    // ============================================================
+    // APRESENTAÇÃO DOS RESULTADOS
+    // ============================================================
+
+    function mostrarListaChegadas(dados) {
+
+      const resultado =
+        document.getElementById("resultado");
+
+      resultado.innerHTML = "";
+
+      const titulo =
+        document.createElement("div");
+
+      titulo.className = "titulo-lista";
+
+      titulo.textContent =
+        "Chegadas — " + dados.nomeMes;
+
+      resultado.appendChild(titulo);
+
+
+      if (!dados.lista || dados.lista.length === 0) {
+
+        const vazio =
+          document.createElement("div");
+
+        vazio.className = "vazio";
+
+        vazio.textContent =
+          "Não há chegadas previstas para este mês.";
+
+        resultado.appendChild(vazio);
+
+        return;
+      }
+
+
+      dados.lista.forEach(function(registro) {
+
+        const bloco =
+          document.createElement("div");
+
+        bloco.className = "registro";
+
+
+        const nome =
+          document.createElement("div");
+
+        nome.className = "nome";
+
+        nome.textContent =
+          registro.nome || "Nome não informado";
+
+
+        const detalhes =
+          document.createElement("div");
+
+        detalhes.className = "detalhes";
+
+        const chegada =
+          formatarData(registro.chegada);
+
+        const partida =
+          formatarData(registro.partida);
+
+        detalhes.innerHTML =
+          "<strong>Chegada:</strong> " +
+          chegada +
+          "<br>" +
+          "<strong>Partida:</strong> " +
+          partida +
+          "<br>" +
+          "<strong>Motivo:</strong> " +
+          escaparHtml(registro.motivo || "");
+
+
+        bloco.appendChild(nome);
+        bloco.appendChild(detalhes);
+
+        resultado.appendChild(bloco);
+
+      });
+
+    }
+
+
+    // ============================================================
+    // FORMATAÇÃO DE DATAS
+    // ============================================================
+
+    function formatarData(valor) {
+
+      if (!valor) {
+        return "Não informada";
+      }
+
+      const data = new Date(valor);
+
+      if (isNaN(data.getTime())) {
+        return valor;
+      }
+
+      return data.toLocaleString(
+        "pt-BR",
+        {
+          dateStyle: "short",
+          timeStyle: "short"
+        }
+      );
+
+    }
+
+
+    // ============================================================
+    // SEGURANÇA BÁSICA
+    // ============================================================
+
+    function escaparHtml(texto) {
+
+      return texto
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+  </script>
 
 </body>
-
 </html>
