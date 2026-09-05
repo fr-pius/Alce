@@ -590,7 +590,6 @@
 
 
   <script>
-
   function enviarFeedback() {
 
     const mensagem =
@@ -600,9 +599,25 @@
 
     mensagem.textContent =
       "Enviando comentário...";
-
   }
 
+  document
+    .getElementById("feedbackFrame")
+    .addEventListener("load", function() {
+
+      const mensagem =
+        document.getElementById(
+          "mensagemFeedback"
+        );
+
+      mensagem.textContent =
+        "Comentário enviado com sucesso.";
+
+      document
+        .getElementById("comentario")
+        .value = "";
+
+    });
 </script>
 
 
