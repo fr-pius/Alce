@@ -591,38 +591,19 @@
 
   <script>
 
-    function enviarFeedback() {
+  function enviarFeedback() {
 
-      const campo =
-        document.getElementById(
-          "comentario"
-        );
+    const mensagem =
+      document.getElementById(
+        "mensagemFeedback"
+      );
 
-      const mensagem =
-        document.getElementById(
-          "mensagemFeedback"
-        );
+    mensagem.textContent =
+      "Enviando comentário...";
 
+  }
 
-      if (!campo.value.trim()) {
-
-        mensagem.textContent =
-          "Por favor, escreva um comentário.";
-
-        return false;
-
-      }
-
-
-      mensagem.textContent =
-        "Comentário enviado. Muito obrigado!";
-
-
-      campo.value = "";
-
-    }
-
-  </script>
+</script>
 
 
 </body>
