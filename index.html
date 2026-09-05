@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -10,6 +11,7 @@
   >
 
   <title>Portal ALCE</title>
+
 
   <style>
 
@@ -177,6 +179,168 @@
     }
 
 
+    /* =====================================================
+       BMM
+       ===================================================== */
+
+    .bmm {
+
+      margin-top: 18px;
+
+    }
+
+
+    /* =====================================================
+       FEEDBACK
+       ===================================================== */
+
+    .feedback {
+
+      margin-top: 44px;
+
+      padding-top: 30px;
+
+      border-top:
+        1px solid #d8d0c1;
+
+    }
+
+
+    .feedback h2 {
+
+      margin: 0 0 8px 0;
+
+      font-size: 24px;
+
+      font-weight: normal;
+
+    }
+
+
+    .feedback p {
+
+      margin:
+        0 auto 18px auto;
+
+      max-width: 560px;
+
+      font-size: 15px;
+
+      line-height: 1.5;
+
+      color: #6b6459;
+
+    }
+
+
+    .feedback form {
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 12px;
+
+    }
+
+
+    .feedback textarea {
+
+      width: 100%;
+
+      min-height: 150px;
+
+      padding: 14px;
+
+      resize: vertical;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 15px;
+
+      line-height: 1.5;
+
+      color: #29251f;
+
+      background: #fffdf8;
+
+      border:
+        1px solid #d8d0c1;
+
+      border-radius: 6px;
+
+      outline: none;
+
+    }
+
+
+    .feedback textarea:focus {
+
+      border-color:
+        #aaa08e;
+
+      box-shadow:
+        0 0 0 2px
+        rgba(170, 160, 142, 0.15);
+
+    }
+
+
+    .botao-feedback {
+
+      padding:
+        11px 24px;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 15px;
+
+      cursor: pointer;
+
+      color: #fffdf8;
+
+      background: #625b50;
+
+      border: none;
+
+      border-radius: 5px;
+
+      transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+
+    }
+
+
+    .botao-feedback:hover {
+
+      background: #4f4940;
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .mensagem-feedback {
+
+      min-height: 20px;
+
+      font-size: 14px;
+
+      color: #625b50;
+
+    }
+
+
     footer {
 
       margin-top: 44px;
@@ -187,6 +351,17 @@
 
     }
 
+
+    /* =====================================================
+       IFRAME INVISÍVEL PARA ENVIO
+       ===================================================== */
+
+    #feedbackFrame {
+
+      display: none;
+
+    }
+
   </style>
 
 </head>
@@ -194,7 +369,9 @@
 
 <body>
 
+
   <main class="pagina">
+
 
     <div class="ornamento">
       ❦
@@ -210,6 +387,10 @@
       Assistentes do Mosteiro
     </div>
 
+
+    <!-- =====================================================
+         APLICAÇÕES
+         ===================================================== -->
 
     <section class="aplicacoes">
 
@@ -238,37 +419,69 @@
 
       </a>
 
+
       <!-- =====================================================
-     ALCE — ORGANIZAÇÃO
-     ===================================================== -->
+           ALCE — ORGANIZAÇÃO
+           ===================================================== -->
 
-<a
-  class="aplicacao"
-  href="organizacao.html"
->
+      <a
+        class="aplicacao"
+        href="organizacao.html"
+      >
 
-  <div class="icone">
-    🏛️
-  </div>
+        <div class="icone">
+          🏛️
+        </div>
 
-  <div class="nome">
-    ALCE — Organização
-  </div>
+        <div class="nome">
+          ALCE — Organização
+        </div>
 
-  <div class="descricao">
-    Organização e gestão
-    do Mosteiro.
-  </div>
+        <div class="descricao">
+          Organização e gestão
+          do Mosteiro.
+        </div>
 
-</a>
+      </a>
+
+
+      <!-- =====================================================
+           BMM
+           ===================================================== -->
+
+      <a
+        class="aplicacao bmm"
+        href="https://fr-pius.github.io/BMM/"
+      >
+
+        <div class="icone">
+          📚
+        </div>
+
+        <div class="nome">
+          Biblioteca de Modelos
+        </div>
+
+        <div class="descricao">
+          Modelos e documentos
+          do Mosteiro.
+        </div>
+
+      </a>
 
 
       <!-- =====================================================
            FUTUROS ALCEs
            =====================================================
 
-      <a class="aplicacao" href="LINK">
-        <div class="icone">📅</div>
+      <a
+        class="aplicacao"
+        href="LINK"
+      >
+
+        <div class="icone">
+          📅
+        </div>
 
         <div class="nome">
           ALCE — Agenda
@@ -278,11 +491,18 @@
           Agenda e compromissos
           do Mosteiro.
         </div>
+
       </a>
 
 
-      <a class="aplicacao" href="LINK">
-        <div class="icone">🛒</div>
+      <a
+        class="aplicacao"
+        href="LINK"
+      >
+
+        <div class="icone">
+          🛒
+        </div>
 
         <div class="nome">
           ALCE — Compras
@@ -292,6 +512,7 @@
           Compras e encomendas
           do Mosteiro.
         </div>
+
       </a>
 
       ===================================================== -->
@@ -299,11 +520,110 @@
     </section>
 
 
+    <!-- =====================================================
+         FEEDBACK
+         ===================================================== -->
+
+    <section class="feedback">
+
+      <h2>
+        Sugestões e comentários
+      </h2>
+
+      <p>
+        Este portal está em desenvolvimento.
+        Se o senhor encontrar algum problema,
+        tiver uma sugestão ou simplesmente quiser
+        deixar uma observação, escreva abaixo.
+      </p>
+
+
+      <form
+        action="https://script.google.com/a/macros/mosteirodasantacruz.org.br/s/AKfycbx34HiwD-S36titlXfySCPOhi6DBGEgqbw4bUAuxVRXQvkEYiD7gXyL-I3d-mFd5xnx/exec"
+        method="POST"
+        target="feedbackFrame"
+        onsubmit="enviarFeedback()"
+      >
+
+        <textarea
+          name="comentario"
+          id="comentario"
+          placeholder="Escreva seu comentário..."
+          required
+        ></textarea>
+
+
+        <button
+          type="submit"
+          class="botao-feedback"
+        >
+          Enviar comentário
+        </button>
+
+
+        <div
+          id="mensagemFeedback"
+          class="mensagem-feedback"
+        ></div>
+
+      </form>
+
+    </section>
+
+
     <footer>
-      AUCE · Mosteiro da Santa Cruz
+      ALCE · Mosteiro da Santa Cruz
     </footer>
 
+
   </main>
+
+
+  <!-- =====================================================
+       DESTINO INVISÍVEL DO ENVIO
+       ===================================================== -->
+
+  <iframe
+    name="feedbackFrame"
+    id="feedbackFrame"
+  ></iframe>
+
+
+  <script>
+
+    function enviarFeedback() {
+
+      const campo =
+        document.getElementById(
+          "comentario"
+        );
+
+      const mensagem =
+        document.getElementById(
+          "mensagemFeedback"
+        );
+
+
+      if (!campo.value.trim()) {
+
+        mensagem.textContent =
+          "Por favor, escreva um comentário.";
+
+        return false;
+
+      }
+
+
+      mensagem.textContent =
+        "Comentário enviado. Muito obrigado!";
+
+
+      campo.value = "";
+
+    }
+
+  </script>
+
 
 </body>
 
