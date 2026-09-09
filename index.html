@@ -191,6 +191,66 @@
 
 
     /* =====================================================
+       EM DESENVOLVIMENTO
+       ===================================================== */
+
+    .desenvolvimento {
+
+      margin-top: 44px;
+
+      padding-top: 30px;
+
+      border-top:
+        1px solid #d8d0c1;
+
+    }
+
+
+    .desenvolvimento h2 {
+
+      margin: 0 0 8px 0;
+
+      font-size: 24px;
+
+      font-weight: normal;
+
+      letter-spacing: 1px;
+
+    }
+
+
+    .desenvolvimento > p {
+
+      margin:
+        0 auto 18px auto;
+
+      max-width: 560px;
+
+      font-size: 15px;
+
+      line-height: 1.5;
+
+      color: #6b6459;
+
+    }
+
+
+    .desenvolvimento-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(260px, 1fr)
+        );
+
+      gap: 18px;
+
+    }
+
+
+    /* =====================================================
        FEEDBACK
        ===================================================== */
 
@@ -521,6 +581,55 @@
 
 
     <!-- =====================================================
+         EM DESENVOLVIMENTO
+         ===================================================== -->
+
+    <section class="desenvolvimento">
+
+      <h2>
+        EM DESENVOLVIMENTO
+      </h2>
+
+      <p>
+        Projetos, experiências e materiais
+        que ainda estão sendo desenvolvidos.
+      </p>
+
+
+      <div class="desenvolvimento-grid">
+
+
+        <!-- =================================================
+             ISEKAI
+             ================================================= -->
+
+        <a
+          class="aplicacao"
+          href="desenvolvimento/isekai/isekai.html"
+        >
+
+          <div class="icone">
+            🐉
+          </div>
+
+          <div class="nome">
+            Isekai
+          </div>
+
+          <div class="descricao">
+            Galeria temática e registros
+            do mundo de Isekai.
+          </div>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
          FEEDBACK
          ===================================================== -->
 
@@ -539,11 +648,11 @@
 
 
       <form
-  action="https://script.google.com/macros/s/AKfycbw43A2W_EbHa52Rs3jy_a68iVdYPVCn4X_22WYvjaR2xpEMPSdTuPh-W9XkjEH5cJR1Jg/exec"
-  method="POST"
-  target="feedbackFrame"
-  onsubmit="enviarFeedback()"
->
+        action="https://script.google.com/macros/s/AKfycbw43A2W_EbHa52Rs3jy_a68iVdYPVCn4X_22WYvjaR2xpEMPSdTuPh-W9XkjEH5cJR1Jg/exec"
+        method="POST"
+        target="feedbackFrame"
+        onsubmit="enviarFeedback()"
+      >
 
         <textarea
           name="comentario"
@@ -590,20 +699,8 @@
 
 
   <script>
-  function enviarFeedback() {
 
-    const mensagem =
-      document.getElementById(
-        "mensagemFeedback"
-      );
-
-    mensagem.textContent =
-      "Enviando comentário...";
-  }
-
-  document
-    .getElementById("feedbackFrame")
-    .addEventListener("load", function() {
+    function enviarFeedback() {
 
       const mensagem =
         document.getElementById(
@@ -611,14 +708,30 @@
         );
 
       mensagem.textContent =
-        "Comentário enviado com sucesso.";
+        "Enviando comentário...";
 
-      document
-        .getElementById("comentario")
-        .value = "";
+    }
 
-    });
-</script>
+
+    document
+      .getElementById("feedbackFrame")
+      .addEventListener("load", function() {
+
+        const mensagem =
+          document.getElementById(
+            "mensagemFeedback"
+          );
+
+        mensagem.textContent =
+          "Comentário enviado com sucesso.";
+
+        document
+          .getElementById("comentario")
+          .value = "";
+
+      });
+
+  </script>
 
 
 </body>
