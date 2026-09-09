@@ -1,1 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Isekai — Portal do ALCE</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at top,
+          #33445a 0%,
+          #151c27 55%,
+          #080b10 100%
+        );
+
+      color: #f3ead8;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 24px;
+    }
+
+
+    .galeria {
+      width: min(1200px, 100%);
+      text-align: center;
+    }
+
+
+    h1 {
+      margin: 0 0 6px;
+
+      font-size:
+        clamp(2rem, 5vw, 3.4rem);
+
+      letter-spacing: 0.12em;
+
+      text-transform: uppercase;
+    }
+
+
+    .subtitulo {
+      margin: 0 0 22px;
+
+      font-size: 1rem;
+
+      opacity: 0.72;
+    }
+
+
+    .quadro {
+      position: relative;
+
+      background: #0b0f16;
+
+      border:
+        1px solid
+        rgba(243, 234, 216, 0.35);
+
+      border-radius: 14px;
+
+      padding: 12px;
+
+      box-shadow:
+        0 20px 55px
+        rgba(0, 0, 0, 0.5);
+    }
+
+
+    .imagem-area {
+      width: 100%;
+
+      min-height: 55vh;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+
+      border-radius: 8px;
+
+      background: #05070a;
+    }
+
+
+    .imagem-area img {
+      display: block;
+
+      width: 100%;
+
+      max-height: 72vh;
+
+      object-fit: contain;
+
+      border-radius: 6px;
+    }
+
+
+    .controle {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 18px;
+
+      margin-top: 14px;
+    }
+
+
+    button {
+      border:
+        1px solid
+        rgba(243, 234, 216, 0.42);
+
+      background:
+        rgba(243, 234, 216, 0.08);
+
+      color: #f3ead8;
+
+      font-family: inherit;
+
+      font-size: 1rem;
+
+      padding: 10px 18px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+
+    button:hover:not(:disabled) {
+      background:
+        rgba(243, 234, 216, 0.18);
+
+      transform: translateY(-1px);
+    }
+
+
+    button:disabled {
+      opacity: 0.3;
+
+      cursor: default;
+    }
+
+
+    .contador {
+      min-width: 55px;
+
+      font-size: 1rem;
+
+      opacity: 0.85;
+    }
+
+
+    .descricao {
+      max-width: 850px;
+
+      margin:
+        16px auto 4px;
+
+      font-size: 1.08rem;
+
+      line-height: 1.5;
+
+      opacity: 0.9;
+    }
+
+
+    .voltar {
+      display: inline-block;
+
+      margin-top: 20px;
+
+      color: #f3ead8;
+
+      text-decoration: none;
+
+      opacity: 0.72;
+
+      transition: opacity 0.2s ease;
+    }
+
+
+    .voltar:hover {
+      opacity: 1;
+
+      text-decoration: underline;
+    }
+
+
+    @media (max-width: 700px) {
+
+      body {
+        padding: 12px;
+      }
+
+
+      .quadro {
+        padding: 8px;
+      }
+
+
+      .imagem-area {
+        min-height: 45vh;
+      }
+
+
+      .controle {
+        gap: 8px;
+      }
+
+
+      button {
+        padding:
+          9px 12px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <main class="galeria">
+
+    <h1>Isekai</h1>
+
+    <p class="subtitulo">
+      Projetos e imagens em desenvolvimento
+    </p>
+
+
+    <section class="quadro">
+
+
+      <div class="imagem-area">
+
+        <img
+          id="imagem"
+          src="mosteiro_mapa.png"
+          alt="Imagem da galeria Isekai"
+        >
+
+      </div>
+
+
+      <div class="controle">
+
+        <button
+          id="anterior"
+          type="button"
+          onclick="anteriorImagem()"
+        >
+          ← Anterior
+        </button>
+
+
+        <span
+          id="contador"
+          class="contador"
+        >
+          1 / 2
+        </span>
+
+
+        <button
+          id="proxima"
+          type="button"
+          onclick="proximaImagem()"
+        >
+          Próxima →
+        </button>
+
+      </div>
+
+
+      <p
+        id="descricao"
+        class="descricao"
+      >
+        Vista do Mosteiro da Santa Cruz no mundo de Isekai.
+      </p>
+
+
+    </section>
+
+
+    <a
+      class="voltar"
+      href="../../index.html"
+    >
+      ← Voltar ao Portal do ALCE
+    </a>
+
+
+  </main>
+
+
+  <script>
+
+    const imagens = [
+
+      {
+        arquivo: "mosteiro_mapa.png",
+
+        descricao:
+          "Vista do Mosteiro da Santa Cruz no mundo de Isekai."
+      },
+
+
+      {
+        arquivo: "Dragão.png",
+
+        descricao:
+          "O dragão que guarda os céus deste mundo."
+      }
+
+    ];
+
+
+    let indice = 0;
+
+
+    function atualizarGaleria() {
+
+      const imagem =
+        document.getElementById("imagem");
+
+
+      const contador =
+        document.getElementById("contador");
+
+
+      const descricao =
+        document.getElementById("descricao");
+
+
+      const anterior =
+        document.getElementById("anterior");
+
+
+      const proxima =
+        document.getElementById("proxima");
+
+
+      imagem.src =
+        imagens[indice].arquivo;
+
+
+      imagem.alt =
+        "Imagem " +
+        (indice + 1) +
+        " da galeria Isekai";
+
+
+      descricao.textContent =
+        imagens[indice].descricao;
+
+
+      contador.textContent =
+        (indice + 1) +
+        " / " +
+        imagens.length;
+
+
+      anterior.disabled =
+        indice === 0;
+
+
+      proxima.disabled =
+        indice === imagens.length - 1;
+
+    }
+
+
+    function anteriorImagem() {
+
+      if (indice > 0) {
+
+        indice--;
+
+        atualizarGaleria();
+
+      }
+
+    }
+
+
+    function proximaImagem() {
+
+      if (
+        indice <
+        imagens.length - 1
+      ) {
+
+        indice++;
+
+        atualizarGaleria();
+
+      }
+
+    }
+
+
+    document.addEventListener(
+      "keydown",
+      function(evento) {
+
+        if (
+          evento.key === "ArrowLeft"
+        ) {
+
+          anteriorImagem();
+
+        }
+
+
+        if (
+          evento.key === "ArrowRight"
+        ) {
+
+          proximaImagem();
+
+        }
+
+      }
+    );
+
+
+    atualizarGaleria();
+
+  </script>
+
+
+</body>
+
+</html>
